@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
 const expertPayment = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: "Expert", required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "Expert", required: true },
   bank: { type: String, required: true },
   branch: { type: String, required: true },
   account_holder_name: { type: String, required: true },
@@ -11,5 +11,5 @@ const expertPayment = new Schema({
   refferal_code: { type: String, required: true },
 });
 
-const expertPayments = model("expertPayment", expertPayment);
+const expertPayments = mongoose.model("expertPayment", expertPayment);
 export default expertPayments;

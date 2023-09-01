@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
 const buyerModel = new Schema({
   email: { type: String, required: true, unique: true },
@@ -17,6 +17,6 @@ const buyerModel = new Schema({
   benefit_code: { type: String, required: false },
 });
 
-const Buyer = model("Buyer", buyerModel);
+const Buyer = mongoose.model("Buyer", buyerModel);
 
 export default Buyer;

@@ -2,6 +2,21 @@ import Buyer from "../../databases/buyer/BuyerModel.js";
 import createToken from "../../utils/jwt.js";
 import pass_hash from "../../utils/pass_hash.js";
 import nodemailer from "nodemailer";
+
+const checkUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await Buyer.findOne({ email: email });
+    if (user) {
+      return res.status(200).json({ exists: true });
+    } else {
+      return res.status(200).json({ exists: false });
+    }
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+};
+
 const createAccount = async (req, res) => {
   const {
     email,
@@ -16,9 +31,6 @@ const createAccount = async (req, res) => {
   } = req.body;
 
   try {
-    const checkUser = await Buyer.findOne({ email: email });
-    if (checkUser)
-      return res.status(400).json({ message: `${email} already exists!!` });
     const hashPass = await pass_hash.encrypt(password);
     const new_buyer = await Buyer.create({
       email,
@@ -144,4 +156,5 @@ export default {
   buyerLogin,
   sendPasswordResetCode,
   changePassword,
+  checkUser,
 };

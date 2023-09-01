@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const buyerModel = new Schema({
+const buyerModel = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   full_name: { type: String, required: true },

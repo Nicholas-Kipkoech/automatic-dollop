@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const expertDocumentsModel = new Schema({
+const expertDocumentsModel = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "Expert", required: true },
   selfie_or_logo: { type: String, required: false },
   license_or_certificate: { type: String, required: false },

@@ -12,7 +12,9 @@ connectDB();
 server.use(express.json());
 
 //api endpoints
-
+server.get("/",(req,res)=>{
+  return "Hello server is running"
+})
 server.use("/api/v1/auth/buyer", buyerRouter);
 server.use("/api/v1/auth/expert", expertRouter);
 

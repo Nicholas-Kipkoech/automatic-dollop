@@ -31,6 +31,9 @@ const createAccount = async (req, res) => {
   } = req.body;
 
   try {
+    const check_user=await Buyer.findOne({email:email})
+    if(check_user){
+      return res.status(400).json({message:`${email} already exists`})}
     const hashPass = await pass_hash.encrypt(password);
     const new_buyer = await Buyer.create({
       email,
